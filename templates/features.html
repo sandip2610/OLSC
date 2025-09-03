@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  {% load static %}
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}Blogrator Academy{% endblock %}</title>
+    <link rel="stylesheet" href="{% static 'css/header.css' %}">
+    <link rel="stylesheet" href="{% static 'css/footer.css' %}">
+    {% block extra_css %}{% endblock %}
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+  <style>
+    * {margin: 0;padding: 0;box-sizing: border-box;font-family: Arial, sans-serif;}
+    body {background: #f5f5f5;color: #333;line-height: 1.6;}
+    /* Hero Title */
+    .hero {text-align: center;padding: 40px 20px;background: #fff;margin-bottom: 20px;}
+    .hero h2 {font-size: 28px;margin-bottom: 10px;}
+    .hero p {font-size: 16px;color: #666;}
+    /* Features Section */
+    .features {max-width: 1200px;margin: auto;display: grid;grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));gap: 20px;padding: 20px;}
+    .feature-box {background: #fff;padding: 40px;border-radius: 10px;box-shadow: 0 3px 8px rgba(0, 0, 0, 0.1);transition: transform 0.2s;}
+    .feature-box:hover {transform: translateY(-5px);}
+    .feature-box h3 {color: #00aaff;margin-bottom: 8px;display: flex;align-items: center;font-size: 18px;}
+    .feature-box h3 i {margin-right: 8px;color: #555;}
+    .feature-box p {color: #555;font-size: 14px;}
+  </style>
+</head>
+<body>
+  {% include 'header.html' %}
+  <!-- Hero Section -->
+  <section class="hero">
+    <h2>KEY FEATURES</h2>
+    <p>Over 30+ features you ❤️ to use Blogrator Academy</p>
+  </section>
+  <!-- Features Section -->
+  <section class="features">
+    <div class="feature-box">
+      <h3><i class="fa-solid fa-rotate"></i> Regular free updates</h3>
+      <p>Regular updates are available to download for free.</p>
+    </div>
+    <div class="feature-box">
+      <h3><i class="fa-solid fa-desktop"></i> Responsive user interface</h3>
+      <p>Smart school will work on all kinds of devices seamlessly.</p>
+    </div>
+    <div class="feature-box">
+      <h3><i class="fa-solid fa-users"></i> Multiuser account system</h3>
+      <p>Access for admin, teacher, student and parent.</p>
+    </div>
+    <div class="feature-box">
+      <h3><i class="fa-solid fa-file-pdf"></i> Export data in PDF</h3>
+      <p>Export report data in PDF format.</p>
+    </div>
+    <div class="feature-box">
+      <h3><i class="fa-solid fa-sack-dollar"></i> Student fees management</h3>
+      <p>Manage student fees very easily.</p>
+    </div>
+    <div class="feature-box">
+      <h3><i class="fa-solid fa-calendar-days"></i> Class routine schedule</h3>
+      <p>Create and manage class routine schedules easily.</p>
+    </div>
+    <div class="feature-box">
+      <h3><i class="fa-solid fa-clipboard-check"></i> Exam marks management</h3>
+      <p>Manage exam marks of all students.</p>
+    </div>
+    <div class="feature-box">
+      <h3><i class="fa-solid fa-bus"></i> Transport management</h3>
+      <p>Manage transport facilities for all routes.</p>
+    </div>
+    <div class="feature-box">
+      <h3><i class="fa-solid fa-book"></i> Library management</h3>
+      <p>Systematic management of all library books.</p>
+    </div>
+    <div class="feature-box">
+      <h3><i class="fa-solid fa-user-check"></i> Daily attendance</h3>
+      <p>Managing daily attendance is hassle free.</p>
+    </div>
+    <div class="feature-box">
+      <h3><i class="fa-brands fa-php"></i> Codeigniter framework</h3>
+      <p>Built on latest version (3.0.0 ) of Codeigniter php framework.</p>
+    </div>
+    <div  class="feature-box">
+      <h3><i class="fa-solid fa-headset"></i> Developer support ready</h3>
+      <p>Dedicated developer support is available any time.</p>
+    </div>
+    <div class="feature-box">
+      <h3><i class="fa-solid fa-gear"></i> Easy customization</h3>
+      <p>Easliy customizable with the help of understandable documentation.</p>
+    </div>
+    <div class="feature-box">
+      <h3><i class="fa-solid fa-language"></i> Multiple language support</h3>
+      <p>Supports 21 different languages.</p>
+    </div>
+    <div class="feature-box">
+      <h3><i class="fa-solid fa-file-lines"></i> Home work document</h3>
+      <p>Attach and download study documents.</p>
+    </div>
+    <div class="feature-box">
+      <h3><i class="fa-solid fa-user-shield"></i> Parent monitor child activity</h3>
+      <p>Parent monitor all activities of his child.</p>
+    </div>
+    <div class="feature-box">
+      <h3><i class="fa-solid fa-chart-pie"></i> Chart & Graph analysis in fees</h3>
+      <p>Chart & graph representation of fees and expenses.</p>
+    </div>
+    <div class="feature-box">
+      <h3><i class="fa-solid fa-id-card"></i> Profile system</h3>
+      <p>Edit profile settings as you wish.</p>
+    </div>
+    <div class="feature-box">
+      <h3><i class="fa-solid fa-hotel"></i> Hostel management</h3>
+      <p>Manage all hostels and their rooms.</p>
+    </div>
+    <div class="feature-box">
+      <h3><i class="fa-solid fa-award"></i> Best quality at lowest price</h3>
+      <p>Best quality product offered at lowest price.</p>
+    </div>
+    <div class="feature-box">
+      <h3><i class="fa-solid fa-envelope"></i> Internal messaging</h3>
+      <p>Admin can send private messages to teacher, student and parent.</p>
+    </div>
+    <div class="feature-box">
+      <h3><i class="fa-solid fa-children"></i> Sibling Management</h3>
+      <p>Manage multiple children of single parent in one parent account.</p>
+    </div>
+    <div class="feature-box">
+      <h3><i class="fa-solid fa-layer-group"></i> Class-Section</h3>
+      <p>Organize classes in multiple sections for an easier management.</p>
+    </div>
+    <div class="feature-box">
+      <h3><i class="fa-solid fa-database"></i> Database Backup / Restore</h3>
+      <p>Easily backup, restore the whole database.</p>
+    </div>
+    <div class="feature-box">
+      <h3><i class="fa-solid fa-print"></i> Print Records</h3>
+      <p>Take printout of every records.</p>
+    </div>
+    <div class="feature-box">
+      <h3><i class="fa-solid fa-coins"></i> Accounting</h3>
+      <p>Trace student fees and expenses all at a place.</p>
+    </div>
+    <div class="feature-box">
+      <h3><i class="fa-solid fa-sms"></i> SMS gateway intergration</h3>
+      <p>Get informed about student marks and events with SMS notifications.</p>
+    </div>
+    <div class="feature-box">
+      <h3><i class="fa-solid fa-money-bill"></i> Manual payment</h3>
+      <p>Ability to take manual payments in cash, cheque, DD.</p>
+    </div>
+    <div class="feature-box">
+      <h3><i class="fa-brands fa-paypal"></i> Online Paypal payment</h3>
+      <p>Parent can pay student fees form their parent account.</p>
+    </div>
+    <div class="feature-box">
+      <h3><i class="fa-solid fa-paintbrush"></i> Aesthetically designed UI</h3>
+      <p>Aesthetically design user interface in HTML5, CSS3.</p>
+    </div>
+  </section>
+  {% include 'footer.html' %}
+</body>
+</html>

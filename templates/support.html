@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  {% load static %}
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>{% block title %}Blogrator Academy{% endblock %}</title>
+  <link rel="stylesheet" href="{% static 'css/style.css' %}">
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+  <style>
+/* Reset & Base Style */
+* {margin: 0;padding: 0;box-sizing: border-box;font-family: 'Roboto', sans-serif;}
+body {display: flex;flex-direction: column;min-height: 100vh;background: #f9f9f9;}
+/* Main Body */
+main {flex: 1;display: flex;justify-content: center;align-items: center;margin-top: 15px;}
+.container {width: 100%;height: 100%;display: flex;flex-direction: row;}
+/* Left Side - Login */
+.left-box {width: 100%;background: #fff;padding: 40px;display: flex;flex-direction: column;justify-content: center;align-items: center;box-shadow: 2px 0 10px rgba(0, 0, 0, 0.1);}
+.left-box .logo img {width: 80px;margin-bottom: 20px;}
+.left-box h2 {margin-bottom: 20px;font-size: 20px;font-weight: 600;text-align: center;}
+.left-box form {width: 100%;}
+.left-box input[type="email"],
+.left-box input[type="password"] {width: 100%;padding: 12px;margin-bottom: 15px;border: 1px solid #ddd;border-radius: 5px;outline: none;font-size: 14px;}
+.captcha {display: flex;align-items: center;margin-bottom: 15px;font-size: 14px;}
+.captcha input {margin-right: 10px;}
+button {width: 100%;padding: 12px;background: #28a745;color: white;border: none;border-radius: 5px;font-size: 16px;cursor: pointer;transition: 0.3s;}
+button:hover {background: #218838;}
+.links {margin-top: 15px;font-size: 14px;text-align: center;}
+.links a {color: #007bff;text-decoration: none;}
+.links a:hover {text-decoration: underline;}
+/* Right Side - Welcome Box */
+.right-box {width: 100%;background: url('https://images.unsplash.com/photo-1521737604893-d14cc237f11d') no-repeat center center/cover;display: flex;align-items: center;justify-content: center;color: white;text-align: left;position: relative;}
+.right-box .overlay {background: rgba(0, 0, 0, 0.6);padding: 40px;border-radius: 10px;}
+.right-box h1 {font-size: 32px;margin-bottom: 15px;}
+.right-box p {font-size: 16px;margin-bottom: 10px;}
+.right-box .timing {margin-top: 15px;font-weight: 500;}
+.right-box a {color: #4cafef;text-decoration: none;}
+  </style>
+</head>
+<body>
+    {% include 'header.html' %}
+  <!-- Main Body -->
+  <main>
+    <div class="container">
+      <!-- Left Login Box -->
+      <div class="left-box">
+        <div class="logo">
+          <img src="https://cdn-icons-png.flaticon.com/512/337/337946.png" alt="QDOCS Logo">
+        </div>
+        <h2>Sign In to QDOCS Support</h2>
+        <form>
+          <input type="email" placeholder="Enter Email" required>
+          <input type="password" placeholder="Enter Password" required>
+          <div class="captcha">
+            <input type="checkbox" id="captcha">
+            <label for="captcha">I'm not a robot</label>
+          </div>
+          <button type="submit">Sign In</button>
+        </form>
+        <div class="links">
+          <a href="#">Forgot password?</a><br>
+          <span>Don't have an account yet? <a href="#">Sign Up</a></span>
+        </div>
+      </div>
+      <!-- Right Info Box -->
+      <div class="right-box">
+        <div class="overlay">
+          <h1>Welcome to our new support system!</h1>
+          <p>Committed to provide always better support.</p>
+          <p class="timing">Support Timings: Monday – Saturday 10 AM to 6 PM IST</p>
+          <p>If you are facing any issue in using this support system then feel free to report us at
+            <a href="mailto:support@qdocs.net">support@qdocs.net</a>
+          </p>
+        </div>
+      </div>
+    </div>
+  </main>
+    {% include 'footer.html' %}
+  <!--<script src="{% static 'js/script.js' %}"></script> -->
+</body>
+</html>

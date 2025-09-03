@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  {% load static %}
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}Blogrator Academy{% endblock %}</title>
+    <link rel="stylesheet" href="{% static 'css/header.css' %}">
+    <link rel="stylesheet" href="{% static 'css/footer.css' %}">
+    {% block extra_css %}{% endblock %}
+  <link rel="stylesheet" href="style.css" />
+  {% load static %}
+<style>
+:root{
+  --accent:#9ccf2f;
+  --bg:#141414;
+  --muted:#999;
+  --container:1200px;
+  --card-shadow: 0 8px 30px rgba(9,9,9,0.12);
+  --glass: rgba(255,255,255,0.03);
+}
+/* Reset */
+*{box-sizing:border-box}
+html,body{height:100%}
+body{margin:0;font-family: "Segoe UI", Roboto, Arial, sans-serif;background:#f6f6f6;color:#222;line-height:1.45;}
+/* Utility container */
+.container{max-width:var(--container);margin:0 auto;padding:0 18px;}
+/* Header */
+.site-header{background:linear-gradient(0deg, rgba(0,0,0,0.85), rgba(0,0,0,0.85));color:#fff;position:sticky;top:0;z-index:50;backdrop-filter: blur(4px);}
+/* Hero */
+.hero{background:#2b2b2b;color:#fff;padding:48px 0}
+.hero-inner{display:flex;gap:24px;align-items:center}
+.hero-left{flex:1;max-width:720px}
+.hero-left h1{font-size:36px;margin:6px 0 8px;color:lightgreen;letter-spacing:1px}
+.lead{color:#ddd;font-size:18px;margin:0 0 12px}
+.new-ver{color:var(--accent);margin:6px 0 18px;font-size:18px}
+.bullets p{font-size:22px;margin:6px 0;font-weight:700}
+.hero-ctas{margin-top:16px;display:flex;gap:12px;flex-wrap:wrap}
+.btn-outline{background:#2bb6d6;color:#fff;border-radius:28px}
+.btn-info{background:#2bb6d6;color:#fff;border-radius:28px}
+.hero-right{flex:0 0 560px;text-align:right}
+.devices{max-width:100%;height:auto;box-shadow:var(--card-shadow);border-radius:8px}
+/* Login grid */
+.login-grid{display:flex;flex-wrap:wrap;gap:12px;padding:28px 18px}
+.chip{flex:1 1 240px;padding:18px;border-radius:6px;border:none;font-weight:700;color:#fff;box-shadow:var(--card-shadow);cursor:pointer}
+.purple{background:#8e44ad}
+.green{background:#a0d63b;color:#0b0b0b}
+.pink{background:#e91e63}
+.blue{background:#118ab2}
+.gray{background:#7f8c8d}
+.orange{background:#ff9800}
+.sky{background:#17a2b8}
+.darkgreen{background:#2e7d32}
+.darkblue{background:#0d47a1}
+.red{background:#f33}
+/* Help & doc */
+.help-doc{padding:36px 18px 60px;background:#fff}
+.section-title{text-align:center;font-size:28px;margin-bottom:18px}
+.cards{display:flex;gap:18px;flex-wrap:wrap;justify-content:space-between}
+.card{flex:1 1 300px;background:#fafafa;padding:28px;border-radius:8px;box-shadow:var(--card-shadow);text-align:center}
+.card .icon{font-size:34px;margin-bottom:12px}
+.btn-purple{background:#8e44ad;color:#fff;padding:10px 14px;border-radius:6px}
+.btn-pink{background:#e91e63;color:#fff;padding:10px 14px;border-radius:6px}
+.btn-orange{background:#ff9800;color:#111;padding:10px 14px;border-radius:6px}
+/* Responsive */
+@media (max-width:980px){
+  .hero-inner{flex-direction:column-reverse;align-items:center;text-align:center}
+  .hero-right{text-align:center;flex:0 0 auto}
+  .main-nav{display:none}
+  .hamburger{display:inline-block}
+  .brand-sub{display:none}
+  .login-grid{justify-content:center}
+  .cards{flex-direction:column}
+  .header-inner{gap:12px}
+}
+@media (max-width:520px){.hero-left h1{font-size:22px}.bullets p{font-size:18px}.chip{flex:1 1 45%}}
+/*hero background img*/
+.hero {position: relative;background: url("{% static 'img_1.png' %}") no-repeat center center/cover;padding: 100px 0;color: #fff;}
+.hero::before {content: "";position: absolute;top: 0; left: 0; right: 0; bottom: 0;background: rgba(0,0,0,0.5);}
+.hero .container {position: relative;z-index: 1;}
+</style>
+</head>
+<body>
+  {% include 'header.html' %}
+  <!-- Hero -->
+  <section class="hero">
+    <div class="container hero-inner">
+      <div class="hero-left">
+        <h1>BLOGRATOR ACADEMY FOR UNIVERSITIES | COLLEGES | HIGH SCHOOLS | PRIMARY SCHOOLS | ANY EDUCATIONAL INSTITUTE</h1>
+        <p class="lead">The only software need to run your school Smarter.</p>
+        <p class="new-ver"><strong>New Ver. 7.1 Released</strong></p>
+        <div class="bullets">
+          <p>Beautifully Designed and Intelligently</p>
+          <p>Developed School Management System for</p>
+          <p>Best User Experience</p>
+        </div>
+        <div class="hero-ctas">
+<button class="btn btn-outline" onclick="window.location.href='{% url 'demo' %}'">🖥️ TRY DEMO</button>
+          <button class="btn btn-buy">BUY NOW $59</button>
+          <button class="btn btn-info">HELP</button>
+        </div>
+      </div>
+      <div class="hero-right">
+        <img src="{% static 'img_2.png' %}" alt="devices" class="devices" />
+      </div>
+    </div>
+  </section>
+  <!-- Login Buttons grid -->
+  <h1 align="center">TRY BLOGRATOR ACADEMY DEMO </h1>
+  <P align="center">TRY HANDSON DEMONSTRATION OF BLOGRATOR ACADEMY WITH SIMPLE DATA</P>
+  <section class="login-grid container">
+    <button class="chip purple"><a href="{% url 'admin' %}">SUPER ADMIN LOGIN</a></button>
+    <button class="chip green"><a href="{% url 'login' %}">STUDENT LOGIN</a></button>
+    <button class="chip pink">PARENT LOGIN</button>
+    <button class="chip blue"><a href="{% url 'admin' %}">ADMIN LOGIN</a></button>
+    <button class="chip gray"><a href="{% url 'login' %}">TEACHER LOGIN</a></button>
+    <button class="chip orange">ACCOUNTANT LOGIN</button>
+    <button class="chip sky">RECEPTIONIST LOGIN</button>
+    <button class="chip darkgreen"><a href="{% url 'login' %}">LIBRARIAN LOGIN</a></button>
+    <button class="chip darkblue">FRONT SITE</button>
+    <button class="chip red">ANDROID APP</button>
+  </section>
+  <!-- Help & Documentation -->
+  <section class="help-doc container">
+    <h2 class="section-title">HELP & DOCUMENTATION</h2>
+    <div class="cards">
+      <article class="card">
+        <div class="icon">📘</div>
+        <h3>HELP ARTICLES</h3>
+        <p>Having some doubts? Check help articles for Blogrator Academy.</p>
+        <button class="btn btn-purple">BROWSE HELP ARTICLES</button>
+      </article>
+      <article class="card">
+        <div class="icon">📄</div>
+        <h3>DOCUMENTATION</h3>
+        <p>Read the documentation and get to know Blogrator Academy.</p>
+        <button class="btn btn-pink">BROWSE DOCUMENTATION</button>
+      </article>
+      <article class="card">
+        <div class="icon">🛟</div>
+        <h3>SUPPORT</h3>
+        <p>Use our dedicated support area to get support after purchasing.</p>
+        <button class="btn btn-orange">GET SUPPORT</button>
+      </article>
+    </div>
+  </section>
+   {% include 'footer.html' %}
+  <script src="script.js">
+// Simple small interactions: mobile menu toggle and smooth scroll
+document.addEventListener('DOMContentLoaded', () => {
+  const menuBtn = document.getElementById('menuToggle');
+  menuBtn && menuBtn.addEventListener('click', () => {
+    const nav = document.querySelector('.main-nav');
+    if (!nav) return;
+    if (nav.style.display === 'flex') {
+      nav.style.display = 'none';
+    } else {
+      nav.style.display = 'flex';
+      nav.style.flexDirection = 'column';
+      nav.style.position = 'absolute';
+      nav.style.right = '20px';
+      nav.style.top = '66px';
+      nav.style.background = 'rgba(0,0,0,0.85)';
+      nav.style.padding = '10px';
+      nav.style.borderRadius = '8px';
+    }
+  });
+  // smooth scroll for internal anchors (if present)
+  document.querySelectorAll('a[href^="#"]').forEach(a=>{
+    a.addEventListener('click', e=>{
+      e.preventDefault();
+      const id = a.getAttribute('href').slice(1);
+      const el = document.getElementById(id);
+      if(el) el.scrollIntoView({behavior:'smooth'});
+    });
+  });
+});
+</script>
+</body>
+</html>

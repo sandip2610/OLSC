@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Register</title>
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-image: url("{% static 'sineup.jpg' %}");
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+            height: 100vh;
+            margin: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        .registration-container {
+            background-color: rgba(255, 255, 255, 0.5);
+            backdrop-filter: blur(10px);
+            padding: 20px;
+            border-radius: 12px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+            width: 100%;
+            max-width: 550px;
+            text-align: center;
+        }
+        h2 {
+            text-align: center;
+            margin-bottom: 10px;
+            font-size: 1.5em;
+        }
+        form {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+        label {
+            display: block;
+            margin: 10px 0 5px;
+            text-align: left;
+            width: 100%;
+            font-size: 0.9em;
+        }
+        input[type="text"], input[type="email"], input[type="number"], input[type="password"], input[type="date"], input[type="file"], select {
+            width: 100%;
+            padding: 8px;
+            margin-bottom: 10px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            font-size: 0.9em;
+            box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.1);
+        }
+        button {
+            width: 100%;
+            padding: 10px;
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            font-size: 1em;
+            cursor: pointer;
+        }
+        button:hover {
+            background-color: #45a049;
+        }
+        .messages {
+            color: red;
+            font-weight: bold;
+            margin-bottom: 10px;
+        }
+        .success {
+            color: green;
+        }
+    </style>
+</head>
+<body>
+    <div class="registration-container">
+        <h2>Register</h2>
+        {% for message in messages %}
+            <p class="messages {% if message.tags %}{{ message.tags }}{% endif %}">{{ message }}</p>
+        {% endfor %}
+        <form id="registerForm" method="POST" enctype="multipart/form-data" onsubmit="return validateForm()">
+            {% csrf_token %}
+            <label>Name</label>
+            <input type="text" name="name" placeholder="Name" required>
+            <label>Email</label>
+            <input type="email" name="email" placeholder="Email" required>
+            <label>Phone Number</label>
+            <input type="text" name="phone_number" placeholder="Phone Number" required>
+            <label>Date of Birth</label>
+            <input type="date" name="dob" required>
+            <label>Gender</label>
+            <select name="gender" required>
+                <option value="">Select Gender</option>
+                <option value="Male">Male</option>
+                <option value="Female">Female</option>
+                <option value="Other">Other</option>
+            </select>
+            <label>Password</label>
+            <input type="password" name="password" id="password" placeholder="Password" required>
+            <label>Confirm Password</label>
+            <input type="password" name="confirm_password" id="confirm_password" placeholder="Confirm Password" required>
+            <label>Photo</label>
+            <input type="file" name="photo">
+            <button type="submit">Register</button>
+        </form>
+        <p id="passwordMessage" class="messages"></p>
+    </div>
+    <script>
+        function validateForm() {
+            const password = document.getElementById('password').value;
+            const confirmPassword = document.getElementById('confirm_password').value;
+            const message = document.getElementById('passwordMessage');
+            // Check if passwords match
+            if (password !== confirmPassword) {
+                message.textContent = "Password and Confirm_Password do not match!";
+                return false;
+            }
+            // Password strength check
+            const strongPassword = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$/;
+            if (!strongPassword.test(password)) {
+                message.textContent = "Password should be at least 8 characters long and include uppercase, lowercase, number, and special character.";
+                return false;
+            }
+            message.textContent = "";
+            return true;
+        }
+    </script>
+</body>
+</html>

@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  {% load static %}
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}Blogrator Academy{% endblock %}</title>
+    <link rel="stylesheet" href="{% static 'css/header.css' %}">
+    <link rel="stylesheet" href="{% static 'css/footer.css' %}">
+    <link rel="stylesheet" href="style.css">
+  {% block extra_css %}{% endblock %}
+  <style>
+    * {margin: 0;padding: 0;box-sizing: border-box;font-family: Arial, sans-serif;}
+/* Hero Title */
+.hero {text-align: center;padding: 40px 20px;background: #fff;margin-bottom: 20px;}
+.hero h2 {font-size: 28px;margin-bottom: 10px;}
+.hero p {font-size: 16px;color: #666;}
+body {background: #fff;color: #333;}
+main {display: flex;justify-content: space-around;align-items: flex-start;padding: 20px;gap: 10px;}
+/* Circle Sections */
+.roles {display: grid;grid-template-columns: repeat(2, 250px);gap: 10px;}
+.circle {border: 2px solid #eee;border-radius: 50%;padding: 30px 20px;text-align: center;background: #fdfdfd;transition: transform 0.3s ease;}
+.circle:hover {transform: scale(1.05);}
+.circle img {width: 50px;margin-bottom: 10px;}
+.circle h3 {font-size: 16px;margin-bottom: 5px;}
+.circle p {font-size: 13px;color: #555;}
+/* Buttons */
+.login-buttons {display: flex;flex-direction: column;gap: 12px;min-width: 520px;}
+.btn1 {padding: 18px 20px;border: none;color: #fff;font-weight: bold;font-size: 28px;border-radius: 6px;cursor: pointer;text-align: left;transition: transform 0.2s ease, opacity 0.2s ease;}
+.btn1:hover {opacity: 0.9;transform: translateX(3px);}
+/* Button Colors */
+.purple { background: #9c27b0; }
+.green { background: #8bc34a; }
+.pink { background: #e91e63; }
+.blue { background: #2196f3; }
+.gray { background: #9e9e9e; }
+.orange { background: #ff9800; }
+.lightblue { background: #00bcd4; }
+.darkgreen { background: #4caf50; }
+/* Responsive */
+@media (max-width: 1024px) {
+  main {flex-direction: column;align-items: center;gap: 30px;}
+  .roles {grid-template-columns: repeat(2, 200px);justify-content: center;}
+  .login-buttons {width: 100%;max-width: 350px;}
+}
+@media (max-width: 600px) {
+  header h1 {font-size: 22px;}
+  .roles {grid-template-columns: 1fr;}
+  .circle {width: 200px;height: 200px;margin: auto;}
+  .login-buttons {width: 100%;max-width: 280px;}
+  .btn1 {font-size: 13px;text-align: center;}
+}
+  </style>
+</head>
+<body>
+  {% include 'header.html' %}
+  <section class="hero">
+    <h2>TRY BLOGRATOR ACADEMY DEMO</h2>
+    <p>TRY HANDSON DEMONSTRATION OF BLOGRATOR ACADEMY WITH SAMPLE DATA</p>
+  </section>
+  <main>
+    <!-- Left side circles -->
+    <section class="roles">
+      <div class="circle">
+        <img src="https://cdn-icons-png.flaticon.com/512/847/847969.png" alt="super admin">
+        <h3>SUPER ADMIN</h3>
+        <p>Take full control with all features</p>
+      </div>
+      <div class="circle">
+        <img src="https://cdn-icons-png.flaticon.com/512/1995/1995574.png" alt="admin">
+        <h3>ADMIN</h3>
+        <p>Manage day to day activities with almost all features</p>
+      </div>
+      <div class="circle">
+        <img src="https://cdn-icons-png.flaticon.com/512/2620/2620734.png" alt="teacher">
+        <h3>TEACHER</h3>
+        <p>Manage student & academic activities</p>
+      </div>
+      <div class="circle">
+        <img src="https://cdn-icons-png.flaticon.com/512/3135/3135715.png" alt="receptionist">
+        <h3>RECEPTIONIST</h3>
+        <p>Manage all front office relative activities</p>
+      </div>
+      <div class="circle">
+        <img src="https://img.icons8.com/ios-filled/100/000000/accounting.png" alt="accountant">
+        <h3>ACCOUNTANT</h3>
+        <p>Trace student fees and expenses all at a place</p>
+      </div>
+      <div class="circle">
+        <img src="https://cdn-icons-png.flaticon.com/512/3135/3135810.png" alt="student">
+        <h3>STUDENT</h3>
+        <p>Collaborate with school activities including exams, marks, class routine, communicates with teacher</p>
+      </div>
+      <div class="circle">
+        <img src="https://cdn-icons-png.flaticon.com/512/1087/1087927.png" alt="parent">
+        <h3>PARENT</h3>
+        <p>Get child all academic updates communication with school administration</p>
+      </div>
+      <div class="circle">
+        <img src="https://cdn-icons-png.flaticon.com/512/2232/2232688.png" alt="librarian">
+        <h3>LIBRARIAN</h3>
+        <p>Systematic management of whole library including books issue/return</p>
+      </div>
+    </section>
+    <!-- Right side buttons -->
+    <aside class="login-buttons">
+      <button class="btn1 purple">👤 SUPER ADMIN LOGIN</button>
+      <button class="btn1 green">👨‍🎓 STUDENT LOGIN</button>
+      <button class="btn1 pink">👨‍👩‍👦 PARENT LOGIN</button>
+      <button class="btn1 blue">👤 ADMIN LOGIN</button>
+      <button class="btn1 gray">👨‍🏫 TEACHER LOGIN</button>
+      <button class="btn1 orange">💲 ACCOUNTANT LOGIN</button>
+      <button class="btn1 lightblue">📞 RECEPTIONIST LOGIN</button>
+      <button class="btn1 darkgreen">📚 LIBRARIAN LOGIN</button>
+      <button class="btn1 blue">🏫 FRONT SITE</button>
+      <button class="btn1 pink">🤖 ANDROID APP</button>
+    </aside>
+  </main>
+  {% include 'footer.html' %}
+  <!-- <script src="{% static 'js/script.js' %}"></script> -->
+</body>
+</html>
