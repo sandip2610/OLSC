@@ -245,11 +245,6 @@ class Document(models.Model):
     def __str__(self):
         return f"{self.name} - {self.student.name}"
 
-
-
-
-
-
 class Timeline(models.Model):
     student = models.ForeignKey(Student, on_delete=models.CASCADE)
     content = models.FileField(upload_to='timeline/')

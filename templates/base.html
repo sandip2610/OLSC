@@ -46,7 +46,6 @@
     .sidebar ul li a {display: block;color: #fff;text-decoration: none;padding: 0px 0px;border-radius: 5px;transition: background 0.2s;}
     .sidebar ul li a:hover {background: #2c3e50;color: #fff;}
     .sidebar ul li a:visited {color: #fff;}
-
     /* ===== DARK MODE START ===== */
     .dark-mode {background: #121212;color: #f0f0f0;}
     .dark-mode body {background-color: #121212;color: #f0f0f0;}
@@ -123,7 +122,10 @@
         .dark-mode th {background: #333;color: #f0f0f0;}
         .dark-mode form label {color: #ccc;}
     .dark-mode table td, .dark-mode table th {background-color: #1e1e1e !important;color: #f0f0f0 !important;}
-    /* ===== DARK MODE END ===== */
+    .dark-mode .card-title {color: #f0f0f0 !important;}
+    .dark-mode .card-time {color: #aaa !important;}
+    .dark-mode .card-text {color: #ddd !important;}
+      /* ===== DARK MODE END ===== */
   </style>
 </head>
 <body>
@@ -166,7 +168,7 @@
         <li><a href="{% url 'home1' %}">🏠 Home</a></li>
         <li><a href="{% url 'profile' %}">👩‍🏫 Teacher Profile</a></li>
         <li><a href="{% url 'time' %}">📅 Class Time Table</a></li>
-        <li><a href="{% url 'attendance' %}">📝 Student Attendance</a></li>
+        <li><a href="{% url 'attendance' %}">📝 Student Attendanc</a></li>
         <li><a href="{% url 'homework' %}">📘 Assign Homework</a></li>
         <li><a href="{% url 'results' %}">📊 Student Results</a></li>
         <li><a href="{% url 'timeline' %}">☰ Timeline</a></li>

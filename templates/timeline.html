@@ -6,83 +6,28 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css">
     <style>
-        body {
-            background-color: #f0f2f5;
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-        }
-
-        .timeline-container {
-            max-width: 700px;
-            margin: 0px auto;
-        }
-
-        /* Card Styling */
-        .timeline-card {
-            border: none;
-            border-radius: 10px;
-            box-shadow: 0 2px 6px rgba(0,0,0,0.08);
-            transition: transform 0.2s ease, box-shadow 0.2s ease;
-        }
-
-        .timeline-card:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 6px 18px rgba(0,0,0,0.12);
-        }
-
-
-        /* Post Content */
-        .post-content {
-            font-size: 12px;
-        }
-
-        .card-title {
-            font-weight: 600;
-            color: #050505;
-        }
-
-        .card-time {
-            font-size: 13px;
-            color: #65676b;
-        }
-
-        .card-text {
-            margin-top: 8px;
-            margin-bottom: 12px;
-            color: #1c1e21;
-        }
-
-        /* Media Content */
+        body {background-color: #f0f2f5;font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;}
+        .timeline-container {max-width: 700px;margin: 0px auto;}
+        .timeline-card {border: none;border-radius: 0 !important;box-shadow: 0 2px 6px rgba(0,0,0,0.08);transition: transform 0.2s ease, box-shadow 0.2s ease;margin-bottom: 0 !important;}
+        .post-content {font-size: 12px;}
+        .card-title {font-weight: 600;color: #050505;}
+        .card-time {font-size: 13px;color: #65676b;}
+        .card-text {margin-top: 8px;margin-bottom: 12px;color: #1c1e21;}
         .post-content img,
-        .post-content video {
-            max-width: 100%;
-            border-radius: 2px;
+        .post-content video {max-width: 100%;border-radius: 2px;}
+        .btn-new-post {border-radius: 2px;font-weight: 500;}
+        .profile-card {display: flex;align-items: center;gap: 10px;}
+        .profile-img {width: 50px;height: 50px;border-radius: 50%;object-fit: cover;border: 2px solid #ddd;}
+        .profile-info {display: flex;flex-direction: column;}
+        .card-text {margin-top: 8px;margin-bottom: 0px;color: #1c1e21;font-size: 14px;}
+        .clamp-text {
+            display: -webkit-box;
+            -webkit-line-clamp: 3;
+            -webkit-box-orient: vertical;
+            overflow: hidden;
+            white-space: normal;
         }
-
-        /* New Post Button */
-        .btn-new-post {
-            border-radius: 20px;
-            font-weight: 500;
-        }
-
-        .profile-card {
-            display: flex;
-            align-items: center;
-            gap: 10px;
-        }
-
-        .profile-img {
-            width: 50px;
-            height: 50px;
-            border-radius: 50%;
-            object-fit: cover;
-            border: 2px solid #ddd;
-        }
-
-        .profile-info {
-            display: flex;
-            flex-direction: column;
-        }
-
+        .show-more {color: #0d6efd;cursor: pointer;font-size: 10px;font-weight: 500;}
     </style>
 </head>
 <body>
@@ -90,22 +35,23 @@
 {% load static %}
 {% block title %}Smart School{% endblock %}
 {% block content %}
-
 <div class="timeline-container">
-
     <div class="d-flex justify-content-between align-items-center mb-4">
         <h3 class="fw-bold" >📌 Timeline</h3>
         <button class="btn btn-primary btn-new-post" data-bs-toggle="modal" data-bs-target="#uploadModal">
             ➕ New Post
         </button>
     </div>
-    <!-- Timeline posts -->
     {% for status in statuses %}
     <div class="card mb-4 timeline-card position-relative">
         <div class="card-body d-flex">
-            <!-- Post content -->
             <div class="post-content w-100">
-                <div class="d-flex justify-content-between align-items-start mb-2">
+
+
+<div class="d-flex justify-content-between align-items-start mb-2 pb-2"
+     style="border-bottom:2px solid #e0e0e0;">
+
+
                     <div class="profile-card">
                         {% if status.student.photo %}
                             <img src="{{ status.student.photo.url }}" alt="{{ status.student.photo.url }}" class="profile-img" style="width: 60px;height: 60px;border-radius: 50%;object-fit: cover;border: 2px solid black;">
@@ -117,8 +63,6 @@
                             <small class="card-time">{{ status.timestamp|date:"d M Y, H:i" }}</small>
                         </div>
                     </div>
-
-                    <!-- 3 Dots Dropdown Menu -->
                     {% if status.student.id == request.session.student_id %}
                     <div class="dropdown">
                         <button class="btn btn-link text-dark p-0" type="button" id="dropdownMenuButton{{ status.id }}" data-bs-toggle="dropdown" aria-expanded="false">
@@ -137,11 +81,16 @@
                     </div>
                     {% endif %}
                 </div>
-
                 {% if status.text %}
-                <p class="card-text">{{ status.text|linebreaks }}</p>
+                <div class="card-text clamp-text" id="text-{{ status.id }}">
+                    {{ status.text|linebreaksbr }}
+                </div>
+                {% if status.text|length > 100 %}
+                    <span class="show-more" onclick="toggleText({{ status.id }})" id="toggle-{{ status.id }}">
+                        More
+                    </span>
                 {% endif %}
-
+            {% endif %}
                 {% if status.content %}
                     {% if status.is_video %}
                         <video controls class="mb-3">
@@ -158,10 +107,7 @@
     {% empty %}
     <p class="text-center text-muted">No posts yet.</p>
     {% endfor %}
-
 </div>
-
-<!-- Upload Modal -->
 <div class="modal fade" id="uploadModal" tabindex="-1" aria-labelledby="uploadModalLabel" aria-hidden="true">
   <div class="modal-dialog modal-lg">
     <div class="modal-content">
@@ -182,8 +128,20 @@
     </div>
   </div>
 </div>
-
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+<script>
+function toggleText(id) {
+    let text = document.getElementById("text-" + id);
+    let toggleBtn = document.getElementById("toggle-" + id);
+    if (text.classList.contains("clamp-text")) {
+        text.classList.remove("clamp-text");
+        toggleBtn.innerText = "Less";
+    } else {
+        text.classList.add("clamp-text");
+        toggleBtn.innerText = "More";
+    }
+}
+</script>
 {% endblock %}
 </body>
 </html>
