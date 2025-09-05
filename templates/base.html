@@ -7,6 +7,7 @@
   <link rel="stylesheet" href="style.css" />
   {% load static %}
   {% load i18n %}
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css">
   <link rel="stylesheet" href="{% static 'css/styles.css' %}">
   <style>
     * { margin: 0; padding: 0; box-sizing: border-box; font-family: Arial, sans-serif; }
@@ -34,11 +35,12 @@
     .bottom-nav a {text-decoration: none;color: #333;display: block;}
     .bottom-nav a:hover {color: #007bff;text-decoration: none;}
     @media (max-width: 768px) {
-      body { flex-direction: column; }
-      .menu-btn { display: block; }
-      .sidebar {left: -250px;z-index: 1000;}
-      .sidebar.active { left: 0; }
-      .dashboard {padding: 90px 20px 80px 20px;}
+      body {flex-direction: column;}
+      .menu-btn {display: block;}
+      .sidebar {position: fixed;top: 49px ;left: -250px;width: 250px;height: calc(100% - 60px);z-index: 1000;transition: left 0.3s ease;background: #34495e;}
+      .sidebar.active {left: 0;}
+      .dashboard {padding: 70px 20px 70px 20px;margin-bottom: 60px;}
+      .bottom-nav {position: fixed;bottom: 0;left: 0;width: 100%;z-index: 1100;}
     }
     .logo {display: flex;align-items: center;justify-content: center;height: 20px;}
     .logo img {height: 60px;width: auto;object-fit: contain;cursor: pointer;transition: transform 0.2s ease-in-out;}
