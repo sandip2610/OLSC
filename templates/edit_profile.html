@@ -15,8 +15,6 @@
             min-height: 100vh;
             margin: 0;
         }
-
-        /* Edit Profile Card */
         .edit-profile-container {
             background: #fff;
             padding: 30px 40px;
@@ -26,31 +24,26 @@
             max-width: 800px;
             animation: fadeIn 0.5s ease-in-out;
         }
-
         @keyframes fadeIn {
             from { opacity: 0; transform: translateY(-15px); }
             to { opacity: 1; transform: translateY(0); }
         }
-
         h2 {
             text-align: center;
             color: #2d6a4f;
             font-size: 1.8em;
             margin-bottom: 20px;
         }
-
         form {
             display: flex;
             flex-direction: column;
             gap: 15px;
         }
-
         label {
             font-weight: 600;
             margin-bottom: 5px;
             color: #333;
         }
-
         input[type="text"],
         input[type="email"],
         input[type="date"],
@@ -64,12 +57,10 @@
             width: 95%;
             transition: all 0.3s ease;
         }
-
         input:focus {
             border-color: #4CAF50;
             box-shadow: 0 0 6px rgba(76, 175, 80, 0.4);
         }
-
         .warning-text {
             color: red;
             text-align: center;
@@ -77,13 +68,11 @@
             font-size: 0.9em;
             font-style: italic;
         }
-
         .button-group {
             display: flex;
             gap: 15px;
             margin-top: 10px;
         }
-
         .btn {
             flex: 1;
             text-align: center;
@@ -95,7 +84,6 @@
             cursor: pointer;
             transition: all 0.3s ease;
         }
-
         .btn-profile {
             background-color: #1d3557;
             color: white;
@@ -103,7 +91,6 @@
         .btn-profile:hover {
             background-color: #16324f;
         }
-
         .btn-save {
             background-color: #4CAF50;
             color: white;
@@ -120,8 +107,7 @@
         <form method="POST" enctype="multipart/form-data">
             {% csrf_token %}
             {{ form.as_p }}
-            <p class="warning-text">*No Change Password!</p>
-
+            <p class="warning-text">*Password change not allowed here!</p>
             <div class="button-group">
                 <a href="{% url 'profile' %}" class="btn btn-profile">Go to Profile</a>
                 <button type="submit" class="btn btn-save">Save Changes</button>

@@ -13,94 +13,21 @@
       --page-bg:#f8f9fa;
       --shadow:0 8px 24px rgba(0,0,0,0.08);
     }
-    body {
-      font-family:"Segoe UI", Roboto, Arial, sans-serif;
-      background:var(--page-bg);
-      color:#212529;
-      line-height:1.6;
-    }
-
-    /* Hero Section */
-    .hero {
-      background:linear-gradient(90deg, rgba(13,110,253,0.08), rgba(13,110,253,0.02));
-      padding:64px 0;
-    }
-    .hero h1 {
-      font-size:2.25rem;
-      font-weight:700;
-    }
-    .hero .lead {
-      font-size:1.15rem;
-      color:var(--muted);
-    }
-
-    /* Feature Cards */
-    .card.feature {
-      border:none;
-      border-radius:16px;
-      box-shadow:var(--shadow);
-      transition:transform 0.2s, box-shadow 0.2s;
-    }
-    .card.feature:hover {
-      transform:translateY(-4px);
-      box-shadow:0 10px 28px rgba(0,0,0,0.1);
-    }
-
-    /* Values */
-    .values h3 {
-      font-weight:600;
-    }
-    .values .val-icon {
-      font-size:28px;
-      width:56px;
-      height:56px;
-      display:flex;
-      align-items:center;
-      justify-content:center;
-      border-radius:14px;
-      background:#f1f5ff;
-      color:var(--accent);
-      flex-shrink:0;
-      transition:background 0.3s;
-    }
-    .values .d-flex:hover .val-icon {
-      background:var(--accent);
-      color:#fff;
-    }
-
-    /* Team */
-    .team h3 {
-      font-weight:600;
-    }
-    .team .avatar {
-      width:96px;
-      height:96px;
-      border-radius:50%;
-      object-fit:cover;
-      box-shadow:var(--shadow);
-      transition:transform 0.2s;
-    }
-    .team .avatar:hover {
-      transform:scale(1.05);
-    }
-
-    /* Buttons */
-    .btn {
-      border-radius:10px;
-      padding:10px 20px;
-      font-weight:500;
-    }
-    .btn-outline-primary {
-      border-color:var(--accent);
-      color:var(--accent);
-      transition:all 0.2s;
-    }
-    .btn-outline-primary:hover {
-      background:var(--accent);
-      color:#fff;
-      border-color:var(--accent-hover);
-    }
-
+    body {font-family:"Segoe UI", Roboto, Arial, sans-serif;background:var(--page-bg);color:#212529;line-height:1.6;}
+    .hero {background:linear-gradient(90deg, rgba(13,110,253,0.08), rgba(13,110,253,0.02));padding:64px 0;}
+    .hero h1 {font-size:2.25rem;font-weight:700;}
+    .hero .lead {font-size:1.15rem;color:var(--muted);}
+    .card.feature {border:none;border-radius:16px;box-shadow:var(--shadow);transition:transform 0.2s, box-shadow 0.2s;}
+    .card.feature:hover {transform:translateY(-4px);box-shadow:0 10px 28px rgba(0,0,0,0.1);}
+    .values h3 {font-weight:600;}
+    .values .val-icon {font-size:28px;width:56px;height:56px;display:flex;align-items:center;justify-content:center;border-radius:14px;background:#f1f5ff;color:var(--accent);flex-shrink:0;transition:background 0.3s;}
+    .values .d-flex:hover .val-icon {background:var(--accent);color:#fff;}
+    .team h3 {font-weight:600;}
+    .team .avatar {width:96px;height:96px;border-radius:50%;object-fit:cover;box-shadow:var(--shadow);transition:transform 0.2s;}
+    .team .avatar:hover {transform:scale(1.05);}
+    .btn {border-radius:10px;padding:10px 20px;font-weight:500;}
+    .btn-outline-primary {border-color:var(--accent);color:var(--accent);transition:all 0.2s;}
+    .btn-outline-primary:hover {background:var(--accent);color:#fff;border-color:var(--accent-hover);}
     </style>
 </head>
 <body>
@@ -225,16 +152,9 @@
       </div>
     </div>
   </section>
-
-
   <script>
     document.getElementById('year').textContent = new Date().getFullYear();
   </script>
-
-
-
-
-
 {% endblock %}
 </body>
 </html>

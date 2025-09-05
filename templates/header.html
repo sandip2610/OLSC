@@ -6,54 +6,49 @@
     <link rel="stylesheet" href="style.css" />
     {% load static %}
   <style>
-:root{
-  --accent:#9ccf2f;
-  --bg:#141414;
-  --muted:#999;
-  --container:1200px;
-  --card-shadow: 0 8px 30px rgba(9,9,9,0.12);
-  --glass: rgba(255,255,255,0.03);
-}
-/* Reset */
-*{box-sizing:border-box}
-html,body{height:100%}
-body{margin:0;font-family: "Segoe UI", Roboto, Arial, sans-serif;background:#f6f6f6;color:#222;line-height:1.45;}
-/* Utility container */
-.container{max-width:var(--container);margin:0 auto;padding:0 18px;}
-/* Header */
-.site-header{background:linear-gradient(0deg, rgba(0,0,0,0.85), rgba(0,0,0,0.85));color:#fff;position:sticky;top:0;z-index:50;backdrop-filter: blur(4px);}
-.header-inner{display:flex;align-items:center;justify-content:space-between;padding:14px 0;}
-.brand{display:flex;gap:12px;align-items:center}
-.logo{height:60px}
-.brand-title{font-weight:800;letter-spacing:1px}
-.brand-sub{display:block;font-size:12px;color:var(--accent);margin-top:2px}
-.main-nav {display: flex;gap: 14px;align-items: center;}
-.main-nav a {color: #ddd;text-decoration: none;font-weight: 700;font-size: 14px;transition: color 0.3s ease;}
-.main-nav a:hover,
-.main-nav a:focus,
-.main-nav a:active {color: #9ccf2f; }
-.header-actions{display:flex;gap:10px;align-items:center}
-.btn{padding:10px 14px;border-radius:28px;border:0;cursor:pointer;font-weight:700}
-.btn-buy{background:var(--accent);color:#111}
-.hamburger{display:none;background:transparent;border:none;color:#fff;font-size:20px;cursor:pointer}
-.hidden {display: none;}
-#mainMenu { position: absolute;top: 60px;right: 1px;background: #222;color: #fff;padding: 10px;border-radius: 8px;box-shadow: 0 4px 10px rgba(0,0,0,0.3);width: 180px;z-index: 1000;}
-#mainMenu ul {list-style: none;padding: 0;margin: 0;}
-#mainMenu li {margin: 8px 0;}
-#mainMenu a {color: white;text-decoration: none;display: block;padding: 6px;border-radius: 4px;}
-#mainMenu a:hover {background: #444;}
-/* Popup for Docs */
-.docs-popup {position: relative;}
-.popup-menu {display: none;position: absolute;top: 30px;left: 0;background: #222;border-radius: 8px;box-shadow: 0 4px 12px rgba(0,0,0,0.3);width: 180px;z-index: 999;}
-.popup-menu a {display: block;padding: 10px;color: white;text-decoration: none;border-radius: 4px;}
-.popup-menu a:hover {background: #444;}
-.popup-menu.show {display: block;}
-/* Popup for Docs */
-.docs-popup1 {position: relative;}
-.popup-menu1 {display: none;position: absolute;top: 30px;left: 0;background: #222;border-radius: 8px;box-shadow: 0 4px 12px rgba(0,0,0,0.3);width: 180px;z-index: 999;}
-.popup-menu1 a {display: block;padding: 10px;color: white;text-decoration: none;border-radius: 4px;}
-.popup-menu1 a:hover {background: #444;}
-.popup-menu1.show {display: block;}
+      :root{
+        --accent:#9ccf2f;
+        --bg:#141414;
+        --muted:#999;
+        --container:1200px;
+        --card-shadow: 0 8px 30px rgba(9,9,9,0.12);
+        --glass: rgba(255,255,255,0.03);
+      }
+      *{box-sizing:border-box}
+      html,body{height:100%}
+      body{margin:0;font-family: "Segoe UI", Roboto, Arial, sans-serif;background:#f6f6f6;color:#222;line-height:1.45;}
+      .container{max-width:var(--container);margin:0 auto;padding:0 18px;}
+      .site-header{background:linear-gradient(0deg, rgba(0,0,0,0.85), rgba(0,0,0,0.85));color:#fff;position:sticky;top:0;z-index:50;backdrop-filter: blur(4px);}
+      .header-inner{display:flex;align-items:center;justify-content:space-between;padding:14px 0;}
+      .brand{display:flex;gap:12px;align-items:center}
+      .logo{height:60px}
+      .brand-title{font-weight:800;letter-spacing:1px}
+      .brand-sub{display:block;font-size:12px;color:var(--accent);margin-top:2px}
+      .main-nav {display: flex;gap: 14px;align-items: center;}
+      .main-nav a {color: #ddd;text-decoration: none;font-weight: 700;font-size: 14px;transition: color 0.3s ease;}
+      .main-nav a:hover,
+      .main-nav a:focus,
+      .main-nav a:active {color: #9ccf2f; }
+      .header-actions{display:flex;gap:10px;align-items:center}
+      .btn{padding:10px 14px;border-radius:28px;border:0;cursor:pointer;font-weight:700}
+      .btn-buy{background:var(--accent);color:#111}
+      .hamburger{display:none;background:transparent;border:none;color:#fff;font-size:20px;cursor:pointer}
+      .hidden {display: none;}
+      #mainMenu { position: absolute;top: 60px;right: 1px;background: #222;color: #fff;padding: 10px;border-radius: 8px;box-shadow: 0 4px 10px rgba(0,0,0,0.3);width: 180px;z-index: 1000;}
+      #mainMenu ul {list-style: none;padding: 0;margin: 0;}
+      #mainMenu li {margin: 8px 0;}
+      #mainMenu a {color: white;text-decoration: none;display: block;padding: 6px;border-radius: 4px;}
+      #mainMenu a:hover {background: #444;}
+      .docs-popup {position: relative;}
+      .popup-menu {display: none;position: absolute;top: 30px;left: 0;background: #222;border-radius: 8px;box-shadow: 0 4px 12px rgba(0,0,0,0.3);width: 180px;z-index: 999;}
+      .popup-menu a {display: block;padding: 10px;color: white;text-decoration: none;border-radius: 4px;}
+      .popup-menu a:hover {background: #444;}
+      .popup-menu.show {display: block;}
+      .docs-popup1 {position: relative;}
+      .popup-menu1 {display: none;position: absolute;top: 30px;left: 0;background: #222;border-radius: 8px;box-shadow: 0 4px 12px rgba(0,0,0,0.3);width: 180px;z-index: 999;}
+      .popup-menu1 a {display: block;padding: 10px;color: white;text-decoration: none;border-radius: 4px;}
+      .popup-menu1 a:hover {background: #444;}
+      .popup-menu1.show {display: block;}
   </style>
 </head>
 <body>
@@ -63,7 +58,7 @@ body{margin:0;font-family: "Segoe UI", Roboto, Arial, sans-serif;background:#f6f
       <img src="{% static 'Blogrator[1].png' %}" alt="logo" class="logo" />
       <div class="brand-text">
         <!-- <span class="brand-title">Blogrator Academy</span> -->
-        <small class="brand-sub">for play schools</small>
+        <small class="brand-sub">For Play Schools</small>
       </div>
     </div>
     <nav class="main-nav">
@@ -71,7 +66,6 @@ body{margin:0;font-family: "Segoe UI", Roboto, Arial, sans-serif;background:#f6f
       <a href="{% url 'features' %}">🚀Features</a>
       <a href="{% url 'demo' %}">🖥️Demo</a>
       <a href="{% url 'works' %}">💡How it Works</a>
-      <!-- Docs with popup -->
       <div class="docs-popup">
         <a href="#" id="docsBtn">📖Help & Doc ☰</a>
         <div class="popup-menu" id="docsMenu">
@@ -86,19 +80,17 @@ body{margin:0;font-family: "Segoe UI", Roboto, Arial, sans-serif;background:#f6f
       <a href="{% url 'support' %}">🛟Support</a>
     </nav>
     <div class="header-actions">
-      <button class="btn btn-buy"><a href="{% url 'register' %}">SINE UP</a></button>
+      <button class="btn btn-buy"><a href="{% url 'register' %}">SIGN UP</a></button>
       <header class="navbar" style="position: relative; background:#111; padding:10px;">
         <button class="hamburger" id="menuToggle" aria-label="menu">☰</button>
-        <!-- Popup menu -->
         <nav id="mainMenu" class="hidden">
           <ul>
             <li><a href="{% url 'home' %}">🏠Home</a></li>
             <li><a href="{% url 'features' %}">🚀Features</a></li>
             <li><a href="{% url 'demo' %}">🖥️Demo</a></li>
             <li><a href="{% url 'works' %}">💡How it Works</a></li>
-            <!-- Docs with popup -->
             <div class="docs-popup1">
-              <a href="#" id="docsBtn1">📖Help & Doc ☰</a>
+              <a href="#" id="docsBtn1">📖Help & Docs ☰</a>
               <div class="popup-menu1" id="docsMenu1">
                 <a href="#">📘 Articles</a>
                 <a href="#">❓ FAQ</a>
@@ -122,33 +114,28 @@ menuBtn.addEventListener("click", (e) => {
   e.stopPropagation();
   menu.classList.toggle("hidden");
 });
-// out side click hamburger popup off
 document.addEventListener("click", (e) => {
   if (!menu.contains(e.target) && !menuBtn.contains(e.target)) {
     menu.classList.add("hidden");
   }
 });
-// Docs popup toggle
 const docsBtn = document.getElementById("docsBtn");
 const docsMenu = document.getElementById("docsMenu");
 docsBtn.addEventListener("click", (e) => {
   e.preventDefault();
   docsMenu.classList.toggle("show");
 });
-// popup off
 document.addEventListener("click", (e) => {
   if (!e.target.closest(".docs-popup")) {
     docsMenu.classList.remove("show");
   }
 });
- // Docs popup toggle
 const docsBtn1 = document.getElementById("docsBtn1");
 const docsMenu1 = document.getElementById("docsMenu1");
 docsBtn1.addEventListener("click", (e) => {
   e.preventDefault();
   docsMenu1.classList.toggle("show");
 });
-// popup off
 document.addEventListener("click", (e) => {
   if (!e.target.closest(".docs-popup1")) {
     docsMenu1.classList.remove("show");

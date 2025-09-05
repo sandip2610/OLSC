@@ -25,7 +25,6 @@
 {% block title %}Smart School{% endblock %}
 {% block content %}
 <div class="profile-card">
-    <!-- Profile Header -->
     <div class="profile-header">
       {% if student.photo %}
         <img src="{{ student.photo.url }}" alt="Profile">
@@ -38,13 +37,11 @@
            DOB:- {{ student.dob }} | Gender:- {{ student.gender }}</p>
       </div>
     </div>
-    <!-- Tabs -->
     <div class="tabs">
       <button class="tab-link active" onclick="openTab(event,'personal')">PERSONAL</button>
       <button class="tab-link" onclick="openTab(event,'parents')">PARENTS</button>
       <button class="tab-link" onclick="openTab(event,'others')">OTHERS</button>
     </div>
-    <!-- Tab Contents -->
     <div id="personal" class="tab-content active">
       <div class="info-row"><span>Admission Date:</span> {{ student.admission_date }}</div>
       <div class="info-row"><span>Date Of Birth:</span> {{ student.dob }}</div>

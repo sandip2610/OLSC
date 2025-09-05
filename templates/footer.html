@@ -6,49 +6,45 @@
     <link rel="stylesheet" href="style.css" />
   {% load static %}
   <style>
-:root{
-  --accent:#9ccf2f;
-  --bg:#141414;
-  --muted:#999;
-  --container:1200px;
-  --card-shadow: 0 8px 30px rgba(9,9,9,0.12);
-  --glass: rgba(255,255,255,0.03);
-}
-/* Reset */
-*{box-sizing:border-box}
-html,body{height:100%}
-body{
-  margin:0;font-family: "Segoe UI", Roboto, Arial, sans-serif;
-  background:#f6f6f6;color:#222;line-height:1.45;
-}
-/* Utility container */
-.container{max-width:var(--container);margin:0 auto;padding:0 18px;}
-/* Footer */
-.site-footer{background:#222;color:#ddd;padding:28px 0;margin-top:30px}
-.footer-inner{display:flex;gap:24px;flex-wrap:wrap}
-.site-footer .col{flex:1 1 220px}
-.site-footer h4{color:#fff;margin-bottom:12px}
-.site-footer a{display:block;color:#bbb;text-decoration:none;margin:6px 0}
-.socials{display:flex;gap:8px}
-.soc{display:inline-flex;width:36px;height:36px;border-radius:6px;background:#3b3b3b;color:#fff;align-items:center;justify-content:center}
-.store{max-width:160px;margin-top:8px}
-.footer-bottom{border-top:1px solid rgba(255,255,255,0.04);padding:12px 0;margin-top:18px;color:#9c9c9c}
-/* Responsive */
-@media (max-width:980px){
-  .hero-inner{flex-direction:column-reverse;align-items:center;text-align:center}
-  .hero-right{text-align:center;flex:0 0 auto}
-  .main-nav{display:none}
-  .hamburger{display:inline-block}
-  .brand-sub{display:none}
-  .login-grid{justify-content:center}
-  .cards{flex-direction:column}
-  .header-inner{gap:12px}
-}
-@media (max-width:520px){
-  .hero-left h1{font-size:22px}
-  .bullets p{font-size:18px}
-  .chip{flex:1 1 45%}
-}
+      :root{
+        --accent:#9ccf2f;
+        --bg:#141414;
+        --muted:#999;
+        --container:1200px;
+        --card-shadow: 0 8px 30px rgba(9,9,9,0.12);
+        --glass: rgba(255,255,255,0.03);
+      }
+      *{box-sizing:border-box}
+      html,body{height:100%}
+      body{
+        margin:0;font-family: "Segoe UI", Roboto, Arial, sans-serif;
+        background:#f6f6f6;color:#222;line-height:1.45;
+      }
+      .container{max-width:var(--container);margin:0 auto;padding:0 18px;}
+      .site-footer{background:#222;color:#ddd;padding:28px 0;margin-top:30px}
+      .footer-inner{display:flex;gap:24px;flex-wrap:wrap}
+      .site-footer .col{flex:1 1 220px}
+      .site-footer h4{color:#fff;margin-bottom:12px}
+      .site-footer a{display:block;color:#bbb;text-decoration:none;margin:6px 0}
+      .socials{display:flex;gap:8px}
+      .soc{display:inline-flex;width:36px;height:36px;border-radius:6px;background:#3b3b3b;color:#fff;align-items:center;justify-content:center}
+      .store{max-width:160px;margin-top:8px}
+      .footer-bottom{border-top:1px solid rgba(255,255,255,0.04);padding:12px 0;margin-top:18px;color:#9c9c9c}
+      @media (max-width:980px){
+        .hero-inner{flex-direction:column-reverse;align-items:center;text-align:center}
+        .hero-right{text-align:center;flex:0 0 auto}
+        .main-nav{display:none}
+        .hamburger{display:inline-block}
+        .brand-sub{display:none}
+        .login-grid{justify-content:center}
+        .cards{flex-direction:column}
+        .header-inner{gap:12px}
+      }
+      @media (max-width:520px){
+        .hero-left h1{font-size:22px}
+        .bullets p{font-size:18px}
+        .chip{flex:1 1 45%}
+      }
   </style>
 </head>
 <body>

@@ -116,12 +116,10 @@
             const password = document.getElementById('password').value;
             const confirmPassword = document.getElementById('confirm_password').value;
             const message = document.getElementById('passwordMessage');
-            // Check if passwords match
             if (password !== confirmPassword) {
-                message.textContent = "Password and Confirm_Password do not match!";
+                message.textContent = "Password and Confirm Password do not match!";
                 return false;
             }
-            // Password strength check
             const strongPassword = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$/;
             if (!strongPassword.test(password)) {
                 message.textContent = "Password should be at least 8 characters long and include uppercase, lowercase, number, and special character.";

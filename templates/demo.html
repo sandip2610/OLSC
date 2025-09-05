@@ -11,45 +11,40 @@
   {% block extra_css %}{% endblock %}
   <style>
     * {margin: 0;padding: 0;box-sizing: border-box;font-family: Arial, sans-serif;}
-/* Hero Title */
-.hero {text-align: center;padding: 40px 20px;background: #fff;margin-bottom: 20px;}
-.hero h2 {font-size: 28px;margin-bottom: 10px;}
-.hero p {font-size: 16px;color: #666;}
-body {background: #fff;color: #333;}
-main {display: flex;justify-content: space-around;align-items: flex-start;padding: 20px;gap: 10px;}
-/* Circle Sections */
-.roles {display: grid;grid-template-columns: repeat(2, 250px);gap: 10px;}
-.circle {border: 2px solid #eee;border-radius: 50%;padding: 30px 20px;text-align: center;background: #fdfdfd;transition: transform 0.3s ease;}
-.circle:hover {transform: scale(1.05);}
-.circle img {width: 50px;margin-bottom: 10px;}
-.circle h3 {font-size: 16px;margin-bottom: 5px;}
-.circle p {font-size: 13px;color: #555;}
-/* Buttons */
-.login-buttons {display: flex;flex-direction: column;gap: 12px;min-width: 520px;}
-.btn1 {padding: 18px 20px;border: none;color: #fff;font-weight: bold;font-size: 28px;border-radius: 6px;cursor: pointer;text-align: left;transition: transform 0.2s ease, opacity 0.2s ease;}
-.btn1:hover {opacity: 0.9;transform: translateX(3px);}
-/* Button Colors */
-.purple { background: #9c27b0; }
-.green { background: #8bc34a; }
-.pink { background: #e91e63; }
-.blue { background: #2196f3; }
-.gray { background: #9e9e9e; }
-.orange { background: #ff9800; }
-.lightblue { background: #00bcd4; }
-.darkgreen { background: #4caf50; }
-/* Responsive */
-@media (max-width: 1024px) {
-  main {flex-direction: column;align-items: center;gap: 30px;}
-  .roles {grid-template-columns: repeat(2, 200px);justify-content: center;}
-  .login-buttons {width: 100%;max-width: 350px;}
-}
-@media (max-width: 600px) {
-  header h1 {font-size: 22px;}
-  .roles {grid-template-columns: 1fr;}
-  .circle {width: 200px;height: 200px;margin: auto;}
-  .login-buttons {width: 100%;max-width: 280px;}
-  .btn1 {font-size: 13px;text-align: center;}
-}
+        .hero {text-align: center;padding: 40px 20px;background: #fff;margin-bottom: 20px;}
+        .hero h2 {font-size: 28px;margin-bottom: 10px;}
+        .hero p {font-size: 16px;color: #666;}
+        body {background: #fff;color: #333;}
+        main {display: flex;justify-content: space-around;align-items: flex-start;padding: 20px;gap: 10px;}
+        .roles {display: grid;grid-template-columns: repeat(2, 250px);gap: 10px;}
+        .circle {border: 2px solid #eee;border-radius: 50%;padding: 30px 20px;text-align: center;background: #fdfdfd;transition: transform 0.3s ease;}
+        .circle:hover {transform: scale(1.05);}
+        .circle img {width: 50px;margin-bottom: 10px;}
+        .circle h3 {font-size: 16px;margin-bottom: 5px;}
+        .circle p {font-size: 13px;color: #555;}
+        .login-buttons {display: flex;flex-direction: column;gap: 12px;min-width: 520px;}
+        .btn1 {padding: 18px 20px;border: none;color: #fff;font-weight: bold;font-size: 28px;border-radius: 6px;cursor: pointer;text-align: left;transition: transform 0.2s ease, opacity 0.2s ease;}
+        .btn1:hover {opacity: 0.9;transform: translateX(3px);}
+        .purple { background: #9c27b0; }
+        .green { background: #8bc34a; }
+        .pink { background: #e91e63; }
+        .blue { background: #2196f3; }
+        .gray { background: #9e9e9e; }
+        .orange { background: #ff9800; }
+        .lightblue { background: #00bcd4; }
+        .darkgreen { background: #4caf50; }
+        @media (max-width: 1024px) {
+          main {flex-direction: column;align-items: center;gap: 30px;}
+          .roles {grid-template-columns: repeat(2, 200px);justify-content: center;}
+          .login-buttons {width: 100%;max-width: 350px;}
+        }
+        @media (max-width: 600px) {
+          header h1 {font-size: 22px;}
+          .roles {grid-template-columns: 1fr;}
+          .circle {width: 200px;height: 200px;margin: auto;}
+          .login-buttons {width: 100%;max-width: 280px;}
+          .btn1 {font-size: 13px;text-align: center;}
+        }
   </style>
 </head>
 <body>
@@ -59,7 +54,6 @@ main {display: flex;justify-content: space-around;align-items: flex-start;paddin
     <p>TRY HANDSON DEMONSTRATION OF BLOGRATOR ACADEMY WITH SAMPLE DATA</p>
   </section>
   <main>
-    <!-- Left side circles -->
     <section class="roles">
       <div class="circle">
         <img src="https://cdn-icons-png.flaticon.com/512/847/847969.png" alt="super admin">
@@ -102,7 +96,6 @@ main {display: flex;justify-content: space-around;align-items: flex-start;paddin
         <p>Systematic management of whole library including books issue/return</p>
       </div>
     </section>
-    <!-- Right side buttons -->
     <aside class="login-buttons">
       <button class="btn1 purple">👤 SUPER ADMIN LOGIN</button>
       <button class="btn1 green">👨‍🎓 STUDENT LOGIN</button>
