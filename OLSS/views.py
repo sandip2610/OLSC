@@ -1,16 +1,22 @@
 from django.shortcuts import render, redirect, get_object_or_404
 from .forms import LoginForm, PasswordResetForm, ResultForm, EditProfileForm, BookForm, DocumentForm, TimelineForm
-from .models import Student, NoticeBoard, Attendance, ExamSchedule, Homework, HomeworkSubmission, ClassTimeTable, Result, Subject, Bus, Stoppage, Book, Activity, Certificate, Document, Timeline
+from .models import Student, NoticeBoard, Attendance, ExamSchedule, Homework, HomeworkSubmission, ClassTimeTable, Result, Subject, Bus, Book, Activity, Certificate, Document, Timeline
 from django.contrib import messages
 import random
 from django.core.mail import send_mail
 from datetime import date
 from .utils import student_login_required
-from .models import Hostel
+from .models import Hostel,DownloadFile
 from django.http import JsonResponse
-from django.utils import timezone
+from django.utils.timezone import now
+from django.utils.encoding import smart_str
+from django.http import FileResponse, HttpResponseForbidden
 
 
+def generate_registration_id():
+    year = now().year
+    random_number = random.randint(1000, 9999)
+    return f"REG{year}{random_number}"
 def register(request):
     if request.method == 'POST':
         name = request.POST.get('name', '').strip()
@@ -27,20 +33,28 @@ def register(request):
             messages.error(request, 'This email is already registered!')
             return render(request, 'register.html')
         if Student.objects.filter(phone_number=phone_number).exists():
-            messages.error(request, 'This phone_number is already registered!')
+            messages.error(request, 'This phone number is already registered!')
             return render(request, 'register.html')
-        student = Student(
-            name=name,
-            email=email,
-            phone_number=phone_number,
-            gender=gender,
-            dob=dob,
-            password=password,
-            photo=photo
+        reg_id = generate_registration_id()
+        while Student.objects.filter(id=reg_id).exists():
+            reg_id = generate_registration_id()
+        student_data = {
+            'name': name,
+            'email': email,
+            'phone_number': phone_number,
+            'gender': gender,
+            'dob': dob,
+            'password': password,
+            'id': reg_id
+        }
+        if photo:
+            student_data['photo'] = photo
+        student = Student.objects.create(**student_data)
+        messages.success(
+            request,
+            f'Registration successful! Your Registration ID is {student.id}. You can now log in.'
         )
-        student.save()
-        messages.success(request, 'Registration successful! You can now log in.')
-        return redirect('login')
+        return redirect('register')
     return render(request, 'register.html')
 
 def student_login(request):
@@ -49,25 +63,29 @@ def student_login(request):
     if request.method == 'POST':
         form = LoginForm(request.POST)
         if form.is_valid():
-            email = form.cleaned_data['email']
+            identifier = form.cleaned_data['identifier']
             password = form.cleaned_data['password']
-            try:
-                student = Student.objects.get(email=email, password=password)
+            student = Student.objects.filter(id=identifier, password=password).first()
+            if not student:
+                student = Student.objects.filter(email=identifier, password=password).first()
+            if student:
                 request.session['student_id'] = student.id
                 return redirect('home1')
-            except Student.DoesNotExist:
-                return render(request, 'login.html', {'form': form, 'error': 'Email or Password is Wrong!'})
+            else:
+                return render(request, 'login.html', {
+                    'form': form,
+                    'error': 'Invalid Email/Registration ID or Password!'
+                })
     else:
         form = LoginForm()
     return render(request, 'login.html', {'form': form})
-
 def logout(request):
     try:
         del request.session['student_id']
     except KeyError:
         pass
     return redirect('home')
-
+@student_login_required
 def password_reset(request):
     if request.method == 'POST':
         form = PasswordResetForm(request.POST)
@@ -94,7 +112,7 @@ def password_reset(request):
     else:
         form = PasswordResetForm()
     return render(request, 'password_reset.html', {'form': form})
-
+@student_login_required
 def change_password(request):
     if request.method == 'POST':
         old_password = request.POST['old_password']
@@ -157,6 +175,7 @@ def profile(request):
         return redirect('login')
     return render(request, 'profile.html', {'student': student})
 
+@student_login_required
 def edit_profile(request, student_id):
     student = get_object_or_404(Student, id=student_id)
     if request.method == 'POST':
@@ -401,6 +420,7 @@ def certificates_page(request):
     student = get_object_or_404(Student, id=student_id)
     certificates = Certificate.objects.filter(student=student)
     return render(request, "certificates.html", {"certificates": certificates, "student": student})
+
 @student_login_required
 def student_documents(request, student_id):
     student = get_object_or_404(Student, id=student_id)
@@ -411,7 +431,7 @@ def student_documents(request, student_id):
         'documents': documents,
         'form': form
     })
-
+@student_login_required
 def add_document(request, student_id):
     student = get_object_or_404(Student, id=student_id)
     if request.method == "POST":
@@ -422,7 +442,7 @@ def add_document(request, student_id):
             doc.save()
             return JsonResponse({'success': True})
     return JsonResponse({'success': False, 'errors': form.errors})
-
+@student_login_required
 def update_document(request, doc_id):
     doc = get_object_or_404(Document, id=doc_id)
     if request.method == "POST":
@@ -431,31 +451,13 @@ def update_document(request, doc_id):
             form.save()
             return JsonResponse({'success': True})
     return JsonResponse({'success': False, 'errors': form.errors})
-
+@student_login_required
 def delete_document(request, doc_id):
     doc = get_object_or_404(Document, id=doc_id)
     if request.method == "POST":
         doc.delete()
         return JsonResponse({'success': True})
     return JsonResponse({'success': False})
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 @student_login_required
 def timeline(request):
@@ -475,10 +477,7 @@ def timeline(request):
                 return redirect('timeline')
     else:
         form = TimelineForm()
-
     statuses = Timeline.objects.all().order_by('-timestamp')
-
-    # Detect file type for template
     for s in statuses:
         if s.content:
             ext = s.content.name.split('.')[-1].lower()
@@ -487,10 +486,7 @@ def timeline(request):
         else:
             s.is_image = False
             s.is_video = False
-
     return render(request, 'timeline.html', {'statuses': statuses, 'form': form})
-
-
 @student_login_required
 def delete_timeline(request, status_id):
     timeline_obj = get_object_or_404(Timeline, id=status_id)
@@ -501,3 +497,48 @@ def delete_timeline(request, status_id):
     else:
         messages.error(request, 'You do not have permission to delete this timeline.')
     return redirect('timeline')
+
+def search_result(request):
+    result = None
+    error = None
+    if request.method == "POST":
+        student_id = request.POST.get("id")
+        dob = request.POST.get("dob")
+        try:
+            student = Student.objects.get(id=student_id, dob=dob)
+            result = Result.objects.filter(student=student).order_by('-uploaded_at').first()
+        except Student.DoesNotExist:
+            error = "❌ No student found, please try again !"
+
+    return render(request, "search_result.html", {"result": result, "error": error})
+
+@student_login_required
+def downloads(request):
+    student_id = request.session.get("student_id")
+    user = get_object_or_404(Student, id=student_id)
+    if request.method == "POST" and (user.is_teacher or user.is_librarian):
+        name = request.POST.get("name")
+        file = request.FILES.get("file")
+        if name and file:
+            DownloadFile.objects.create(name=name, file=file, uploaded_by=user)
+            return redirect("downloads")
+    files = DownloadFile.objects.all().order_by("-id")
+    return render(request, "downloads.html", {"files": files, "student": user})
+@student_login_required
+def download_file(request, pk):
+    obj = get_object_or_404(DownloadFile, pk=pk)
+    f = obj.file
+    return FileResponse(
+        f.open("rb"),
+        as_attachment=True,
+        filename=smart_str(f.name.split("/")[-1])
+    )
+@student_login_required
+def delete_file(request, pk):
+    student_id = request.session.get("student_id")
+    user = get_object_or_404(Student, id=student_id)
+    if not (user.is_teacher or user.is_librarian):
+        return HttpResponseForbidden("⚠️ You do not have permission to delete the file")
+    obj = get_object_or_404(DownloadFile, pk=pk)
+    obj.delete()
+    return redirect("downloads")

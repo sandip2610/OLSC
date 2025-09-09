@@ -67,6 +67,17 @@
         .btn:hover {
             background-color: #218838;
         }
+        .forgot-link {
+            display: block;
+            text-align: center;
+            margin-top: 10px;
+            font-size: 14px;
+            color: #007bff;
+            text-decoration: none;
+        }
+        .forgot-link:hover {
+            text-decoration: underline;
+        }
     </style>
 </head>
 <body>
@@ -78,8 +89,8 @@
         <form action="/login/" method="POST">
             {% csrf_token %}
             <div class="input-group">
-                <label for="email">Gmail:</label>
-                <input type="email" id="email" name="email" placeholder="Enter your Gmail" required>
+                <label for="identifier">Email or Registration ID:</label>
+                <input type="text" id="identifier" name="identifier" placeholder="Enter your Email or Registration ID" required>
             </div>
             <div class="input-group">
                 <label for="password">Password:</label>
@@ -87,7 +98,7 @@
             </div>
             <button type="submit" class="btn">Login</button>
         </form>
-              <a href="{% url 'password_reset' %}" class="text-blue-600">Forgot your password?</a>
+        <a href="{% url 'password_reset' %}" class="forgot-link">Forgot your password?</a>
     </div>
 </body>
 </html>

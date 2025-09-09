@@ -25,6 +25,7 @@
     {% csrf_token %}
     <table>
         <tr>
+            <th>Registration Id</th>
             <th>Student</th>
             <th>Present</th>
             <th>Absent</th>
@@ -32,6 +33,7 @@
         {% for student, status in attendance_status_list %}
             {% if not student.is_teacher and not student.is_librarian %}
             <tr>
+                <td>{{ student.id }}</td>
                 <td>{{ student.name }}</td>
                 <td>
                     <input type="radio" name="status_{{ student.id }}" value="Present"

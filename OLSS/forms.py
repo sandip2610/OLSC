@@ -4,6 +4,7 @@ from .models import NoticeBoard
 from .models import Result
 from .models import Book
 from .models import Document, Timeline
+from .models import DownloadFile
 
 
 
@@ -25,13 +26,19 @@ class StudentRegistrationForm(forms.ModelForm):
         }
 
 class LoginForm(forms.Form):
-    email = forms.EmailField(
-        label="email",
-        widget=forms.EmailInput(attrs={'class': 'form-control', 'placeholder': 'enter your email'})
+    identifier = forms.CharField(   # email এর পরিবর্তে identifier
+        label="Email or Registration ID",
+        widget=forms.TextInput(attrs={
+            'class': 'form-control',
+            'placeholder': 'Enter your Email or Registration ID'
+        })
     )
     password = forms.CharField(
-        label="password",
-        widget=forms.PasswordInput(attrs={'class': 'form-control', 'placeholder': 'enter your password'})
+        label="Password",
+        widget=forms.PasswordInput(attrs={
+            'class': 'form-control',
+            'placeholder': 'Enter your Password'
+        })
     )
 
 class PasswordResetForm(forms.Form):
@@ -54,8 +61,11 @@ class ResultForm(forms.ModelForm):
         fields = ['student', 'exam_name', 'total_marks', 'obtained_marks']
     def __init__(self, *args, **kwargs):
         super(ResultForm, self).__init__(*args, **kwargs)
-        self.fields['student'].queryset = Student.objects.filter(is_teacher=False)
-        self.fields['student'].label_from_instance = lambda obj: obj.email
+        self.fields['student'].queryset = Student.objects.filter(
+            is_teacher=False,
+            is_librarian=False
+        )
+        self.fields['student'].label_from_instance = lambda obj: obj.id
 
 class EditProfileForm(forms.ModelForm):
     password = forms.CharField(widget=forms.PasswordInput, required=False)
@@ -78,11 +88,12 @@ class DocumentForm(forms.ModelForm):
             'file': forms.ClearableFileInput(attrs={'class': 'form-control'}),
         }
 
-
-
-
-
 class TimelineForm(forms.ModelForm):
     class Meta:
         model = Timeline
-        fields = ['content', 'text']   # ✅ শুধু যেগুলো আছে
+        fields = ['content', 'text']
+
+class DownloadFileForm(forms.ModelForm):
+    class Meta:
+        model = DownloadFile
+        fields = ["name", "file"]

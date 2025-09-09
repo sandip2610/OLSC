@@ -58,6 +58,7 @@
         <table>
             <thead>
                 <tr>
+                    <th>Registration</th>
                     <th>Student</th>
                     <th>Exam</th>
                     <th>Obtained Marks/Full Marks</th>
@@ -69,6 +70,7 @@
             <tbody>
                 {% for result in results %}
                 <tr>
+                    <td>{{ result.student.id }}</td>
                     <td>{{ result.student.name }}</td>
                     <td>{{ result.exam_name }}</td>
                     <td>{{ result.obtained_marks }}/{{ result.total_marks }}</td>
@@ -85,7 +87,9 @@
         <p class="no-results">No student results found.</p>
     {% endif %}
 {% else %}
+
     <h2>My Results</h2>
+        <a href="{% url 'search_result' %}">🔙 Search Another Result </a>
     <div class="results-container">
         {% for result in results %}
             <div class="result-card">

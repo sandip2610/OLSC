@@ -11,7 +11,7 @@ from .models import Subject
 from .models import Bus
 from .models import Stoppage
 from .models import Hostel, Room
-from .models import Book, Activity, Certificate,  Document
+from .models import Book, Activity, Certificate,  Document, DownloadFile
 
 
 admin.site.register(Student)
@@ -38,3 +38,4 @@ admin.site.register(Book)
 admin.site.register(Activity)
 admin.site.register(Certificate)
 admin.site.register(Document)
+admin.site.register(DownloadFile)

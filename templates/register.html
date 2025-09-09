@@ -30,8 +30,7 @@
             text-align: center;
         }
         h2 {
-            text-align: center;
-            margin-bottom: 10px;
+            margin-bottom: 20px;
             font-size: 1.5em;
         }
         form {
@@ -76,6 +75,34 @@
         .success {
             color: green;
         }
+
+        .profile-photo-container {
+            position: relative;
+            margin-bottom: 0px;
+        }
+        #photoPreview {
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 2px solid #ccc;
+        }
+        .edit-icon {
+            position: absolute;
+            bottom: 0;
+            right: 0;
+            background-color: #4CAF50;
+            color: white;
+            border-radius: 50%;
+            width: 20px;
+            height: 20px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            cursor: pointer;
+            font-size: 12px;
+            border: 2px solid white;
+        }
     </style>
 </head>
 <body>
@@ -86,6 +113,11 @@
         {% endfor %}
         <form id="registerForm" method="POST" enctype="multipart/form-data" onsubmit="return validateForm()">
             {% csrf_token %}
+            <div class="profile-photo-container">
+                <img id="photoPreview" src="{% static 'img_5.png' %}" alt="Profile Photo">
+                <div class="edit-icon" onclick="document.getElementById('photoInput').click()">✎</div>
+            </div>
+            <input type="file" name="photo" id="photoInput" style="display:none;" onchange="previewPhoto()">
             <label>Name</label>
             <input type="text" name="name" placeholder="Name" required>
             <label>Email</label>
@@ -105,8 +137,6 @@
             <input type="password" name="password" id="password" placeholder="Password" required>
             <label>Confirm Password</label>
             <input type="password" name="confirm_password" id="confirm_password" placeholder="Confirm Password" required>
-            <label>Photo</label>
-            <input type="file" name="photo">
             <button type="submit">Register</button>
         </form>
         <p id="passwordMessage" class="messages"></p>
@@ -127,6 +157,19 @@
             }
             message.textContent = "";
             return true;
+        }
+        function previewPhoto() {
+            const input = document.getElementById('photoInput');
+            const preview = document.getElementById('photoPreview');
+            if (input.files && input.files[0]) {
+                const reader = new FileReader();
+                reader.onload = function(e) {
+                    preview.src = e.target.result;
+                }
+                reader.readAsDataURL(input.files[0]);
+            } else {
+                preview.src = "{% static 'img_5.png' %}";
+            }
         }
     </script>
 </body>

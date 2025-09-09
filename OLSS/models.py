@@ -4,20 +4,20 @@ from django.utils import timezone
 from django.db.models import Max
 
 
-
 class Student(models.Model):
+    id = models.CharField(max_length=20, unique=True, blank=False, null=False, primary_key=True)
     name = models.CharField(max_length=100, default='Name')
     email = models.EmailField(unique=True, default='Email')
     phone_number = models.CharField(max_length=10, unique=True)
     dob = models.DateField()
     gender = models.CharField(max_length=10, choices=[('Male', 'Male'), ('Female', 'Female'), ('Other', 'Other')],
                                   default='Other')
-    photo = models.ImageField(upload_to='profile_photos/', blank=True, null=True)
+    photo = models.ImageField(upload_to='profile_photos/',blank=True,null=True,default='profile_photos/img_5p.png')
     password = models.CharField(max_length=28, default='Password')
     is_teacher = models.BooleanField(default=False)
     is_librarian = models.BooleanField(default=False)
     def __str__(self):
-        return self.name
+        return f"{self.id} - {self.name}"
 
 class NoticeBoard(models.Model):
     notice_no = models.AutoField(primary_key=True)
@@ -103,7 +103,7 @@ class ExamSchedule (models.Model):
         return f"{self.class_name} - {self.day} - {self.subject}"
 
 class Result(models.Model):
-    student = models.ForeignKey(Student,to_field='email',on_delete=models.CASCADE,related_name="results")
+    student = models.ForeignKey(Student,to_field='id',on_delete=models.CASCADE,related_name="results")
     teacher = models.ForeignKey(Student, on_delete=models.SET_NULL, null=True, blank=True,related_name="uploaded_results", limit_choices_to={'is_teacher': True})
     exam_name = models.CharField(max_length=100)
     total_marks = models.FloatField()
@@ -252,3 +252,11 @@ class Timeline(models.Model):
     timestamp = models.DateTimeField(auto_now_add=True)
     def __str__(self):
         return f"{self.student.name} - {self.text[:30] if self.text else 'No Caption'}"
+
+class DownloadFile(models.Model):
+    name = models.CharField(max_length=255)
+    file = models.FileField(upload_to="downloads/")
+    uploaded_at = models.DateTimeField(auto_now_add=True)
+    uploaded_by = models.ForeignKey(Student, on_delete=models.SET_NULL, null=True, blank=True)
+    def __str__(self):
+        return self.name
